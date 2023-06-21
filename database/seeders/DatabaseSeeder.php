@@ -14,11 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if ($this->command->confirm('Do you want to run the seeder?', true)) {
-            $this->call(UsersTableSeeder::class);
-            $this->call(SettingTableSeeder::class);
-            $this->call(CouponSeeder::class);
-        }
+         $this->call(UsersTableSeeder::class);
+         $this->call(SettingTableSeeder::class);
+         $this->call(CouponSeeder::class);
     }
 }
-
