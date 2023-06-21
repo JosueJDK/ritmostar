@@ -48,7 +48,7 @@ Route::get('user/logout', [FrontendController::class, 'logout'])->name('user.log
 Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
 Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
 // Reset password
-Route::post('password-reset', [FrontendController::class, 'showResetForm'])->name('password-reset');
+Route::post('password-reset', [FrontendController::class, 'showResetForm'])->name('password.reset');
 // Socialite
 Route::get('login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
 Route::get('login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');
@@ -128,7 +128,7 @@ Route::resource('/review', ProductReviewController::class);
 Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
 Route::resource('/review', CourseController::class);
-Route::post('course/{slug}/review', [CourseReviewController::class, 'store'])->name('review.store');
+Route::post('course/{slug}/review', [CourseReviewController::class, 'store'])->name('course.review.store');
 
 
 // Post Comment
