@@ -41,17 +41,17 @@ use App\Http\Controllers\CourseController;
 
 Auth::routes(['register'=>false]);
 
-Route::get('user/login', [FrontendController::class, 'login'])->name('login.form');
-Route::post('user/login', [FrontendController::class, 'loginSubmit'])->name('login.submit');
-Route::get('user/logout', [FrontendController::class, 'logout'])->name('user.logout');
+Route::get('/user/login', [FrontendController::class, 'login'])->name('login.form');
+Route::post('/user/login', [FrontendController::class, 'loginSubmit'])->name('login.submit');
+Route::get('/user/logout', [FrontendController::class, 'logout'])->name('user.logout');
 
-Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
-Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
+Route::get('/user/register', [FrontendController::class, 'register'])->name('register.form');
+Route::post('/user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
 // Reset password
-Route::post('password-reset', [FrontendController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password-reset', [FrontendController::class, 'showResetForm'])->name('password.reset');
 // Socialite
-Route::get('login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
-Route::get('login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');
+Route::get('/login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
+Route::get('/login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');
 
 Route::get('/', [FrontendController::class, 'home'])->name('home');
 
@@ -66,7 +66,7 @@ Route::get('/product-cat/{slug}', [FrontendController::class, 'productCat'])->na
 Route::get('/product-sub-cat/{slug}/{sub_slug}', [FrontendController::class, 'productSubCat'])->name('product-sub-cat');
 Route::get('/product-brand/{slug}', [FrontendController::class, 'productBrand'])->name('product-brand');
 
-Route::get('course-detail/{slug}', [CourseController::class, 'courseDetail'])->name('course-detail');
+Route::get('/course-detail/{slug}', [CourseController::class, 'courseDetail'])->name('course-detail');
 // Route::post('/product/search', [FrontendController::class, 'productSearch'])->name('product.search');
 Route::get('/course-cat/{slug}', [CourseController::class, 'courseCat'])->name('course-cat');
 // Route::get('/product-sub-cat/{slug}/{sub_slug}', [FrontendController::class, 'productSubCat'])->name('product-sub-cat');
@@ -90,7 +90,7 @@ Route::get('/wishlist',function(){
 })->name('wishlist');
 Route::get('/wishlist/{slug}', [WishlistController::class, 'wishlist'])->name('add-to-wishlist')->middleware('user');
 Route::get('wishlist-delete/{id}', [WishlistController::class, 'wishlistDelete'])->name('wishlist-delete');
-Route::post('cart/order', [OrderController::class, 'store'])->name('cart.order');
+Route::post('/cart/order', [OrderController::class, 'store'])->name('cart.order');
 // Route::get('order/pdf/{id}', [OrderController::class, 'pdf'])->name('order.pdf');
 Route::get('/income', [OrderController::class, 'incomeChart'])->name('product.order.income');
 // Route::get('/user/chart', [AdminController::class, 'userPieChart'])->name('user.piechart');
@@ -107,7 +107,7 @@ Route::match(['get','post'],'/course/filter', [CourseController::class, 'courseF
 
 // Order Track
 Route::get('/product/track', [OrderController::class, 'orderTrack'])->name('order.track');
-Route::post('product/track/order', [OrderController::class, 'productTrackOrder'])->name('product.track.order');
+Route::post('/product/track/order', [OrderController::class, 'productTrackOrder'])->name('product.track.order');
 
 
 // Blog
@@ -115,8 +115,8 @@ Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/blog-detail/{slug}', [FrontendController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/blog/search', [FrontendController::class, 'blogSearch'])->name('blog.search');
 Route::post('/blog/filter', [FrontendController::class, 'blogFilter'])->name('blog.filter');
-Route::get('blog-cat/{slug}', [FrontendController::class, 'blogByCategory'])->name('blog.category');
-Route::get('blog-tag/{slug}', [FrontendController::class, 'blogByTag'])->name('blog.tag');
+Route::get('/blog-cat/{slug}', [FrontendController::class, 'blogByCategory'])->name('blog.category');
+Route::get('/blog-tag/{slug}', [FrontendController::class, 'blogByTag'])->name('blog.tag');
 
 
 // NewsLetter
@@ -125,21 +125,21 @@ Route::post('/subscribe', [FrontendController::class, 'subscribe'])->name('subsc
 
 // Product Review
 Route::resource('/review', ProductReviewController::class);
-Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
+Route::post('/product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
 Route::resource('/review', CourseController::class);
-Route::post('course/{slug}/review', [CourseReviewController::class, 'store'])->name('course.review.store');
+Route::post('/course/{slug}/review', [CourseReviewController::class, 'store'])->name('course.review.store');
 
 
 // Post Comment
-Route::post('post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
+Route::post('/post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
 Route::resource('/comment', PostCommentController::class);
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
-Route::get('payment', [PayPalController::class, 'payment'])->name('payment');
-Route::get('cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
-Route::get('payment/success', [PayPalController::class, 'success'])->name('payment.success');
+Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
+Route::get('/cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
+Route::get('/payment/success', [PayPalController::class, 'success'])->name('payment.success');
 
 
 // Backend section start
@@ -148,11 +148,11 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
     // user route
-    Route::resource('users', UsersController::class);
+    Route::resource('/users', UsersController::class);
     // Banner
-    Route::resource('banner', BannerController::class);
+    Route::resource('/banner', BannerController::class);
     // Brand
-    Route::resource('brand', BrandController::class);
+    Route::resource('/brand', BrandController::class);
     // Profile
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
@@ -181,8 +181,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // Coupon
     Route::resource('/coupon', CouponController::class);
     // Settings
-    Route::get('settings', [AdminController::class, 'settings'])->name('settings');
-    Route::post('setting/update', [AdminController::class, 'settingsUpdate'])->name('settings.update');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
+    Route::post('/setting/update', [AdminController::class, 'settingsUpdate'])->name('settings.update');
 
     // Notification
     Route::get('/notification/{id}', [NotificationController::class, 'show'])->name('admin.notification');
@@ -190,8 +190,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::delete('/notification/{id}', [NotificationController::class, 'delete'])->name('notification.delete');
 
     // Password Change
-    Route::get('change-password', [AdminController::class, 'changePassword'])->name('change.password.form');
-    Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
+    Route::get('/change-password', [AdminController::class, 'changePassword'])->name('change.password.form');
+    Route::post('/change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
 
 });
 
@@ -221,13 +221,13 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::patch('/user-review/update/{id}', [HomeController::class, 'productReviewUpdate'])->name('user.productreview.update');
 
     // Post comment
-    Route::get('user-post/comment', [HomeController::class, 'userComment'])->name('user.post-comment.index');
-    Route::delete('user-post/comment/delete/{id}', [HomeController::class, 'userCommentDelete'])->name('user.post-comment.delete');
-    Route::get('user-post/comment/edit/{id}', [HomeController::class, 'userCommentEdit'])->name('user.post-comment.edit');
-    Route::patch('user-post/comment/udpate/{id}', [HomeController::class, 'userCommentUpdate'])->name('user.post-comment.update');
+    Route::get('/user-post/comment', [HomeController::class, 'userComment'])->name('user.post-comment.index');
+    Route::delete('/user-post/comment/delete/{id}', [HomeController::class, 'userCommentDelete'])->name('user.post-comment.delete');
+    Route::get('/user-post/comment/edit/{id}', [HomeController::class, 'userCommentEdit'])->name('user.post-comment.edit');
+    Route::patch('/user-post/comment/udpate/{id}', [HomeController::class, 'userCommentUpdate'])->name('user.post-comment.update');
 
     // Password Change
-    Route::get('change-password', [HomeController::class, 'changePassword'])->name('user.change.password.form');
-    Route::post('change-password', [HomeController::class, 'changPasswordStore'])->name('change.password');
+    Route::get('/change-password', [HomeController::class, 'changePassword'])->name('user.change.password.form');
+    Route::post('/change-password', [HomeController::class, 'changPasswordStore'])->name('change.password');
 
 });
